@@ -1,3 +1,5 @@
+using Core.Interfaces;
+using Core.Services;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,8 +12,8 @@ string connectionString = builder.Configuration.GetConnectionString("LocalDb")!;
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<SurveysDbContext>(opts => opts.UseSqlServer(connectionString));
+builder.Services.AddScoped<ISurveysService, SurveysService>();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
