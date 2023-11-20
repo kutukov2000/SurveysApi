@@ -12,7 +12,11 @@ string connectionString = builder.Configuration.GetConnectionString("LocalDb")!;
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<SurveysDbContext>(opts => opts.UseSqlServer(connectionString));
+
 builder.Services.AddScoped<ISurveysService, SurveysService>();
+
+// configure AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

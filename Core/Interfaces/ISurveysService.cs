@@ -1,4 +1,5 @@
-﻿using DataAccess.Data.Entities;
+﻿using Core.ApiModels;
+using DataAccess.Data.Entities;
 
 namespace Core.Interfaces
 {
@@ -6,8 +7,8 @@ namespace Core.Interfaces
     {
         Task<List<Survey>>? Get();
         Task<Survey?> GetById(int id);
-        Task Create(Survey survey);
-        Task Edit(Survey survey);
+        Task Create(SurveyDTO survey);
+        Task Edit(SurveyDTO survey);
         Task Delete(int id);
     }
 }

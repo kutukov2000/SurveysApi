@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+﻿using Core.ApiModels;
+using Core.Interfaces;
 using DataAccess.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,20 +34,20 @@ namespace SurveysApi.Controllers
 
         // PUT: api/Surveys/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSurvey(int id, Survey survey)
+        public async Task<IActionResult> PutSurvey(SurveyDTO survey)
         {
-            _service.Edit(survey);
+            await _service.Edit(survey);
 
             return NoContent();
         }
 
         // POST: api/Surveys
         [HttpPost]
-        public async Task<ActionResult<Survey>> PostSurvey(Survey survey)
+        public async Task<ActionResult<Survey>> PostSurvey(SurveyDTO survey)
         {
             await _service.Create(survey);
 
-            return CreatedAtAction("GetSurvey", new { id = survey.Id }, survey);
+            return Ok(survey);
         }
 
         // DELETE: api/Surveys/5
