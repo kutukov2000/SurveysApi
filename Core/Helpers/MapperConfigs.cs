@@ -10,6 +10,7 @@ namespace Core.Helpers
         public MapperConfigs()
         {
             CreateMap<SurveyDto, Survey>().ReverseMap();
+            CreateMap<CreateSurveyModel, Survey>().ReverseMap();
 
             CreateMap<QuestionDto, Question>().ReverseMap();
             CreateMap<CreateQuestionModel, Question>().ReverseMap();

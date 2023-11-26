@@ -43,7 +43,7 @@ namespace SurveysApi.Controllers
 
         // POST: api/Surveys
         [HttpPost]
-        public async Task<ActionResult<Survey>> PostSurvey(SurveyDto survey)
+        public async Task<ActionResult<Survey>> PostSurvey(CreateSurveyModel survey)
         {
             await _service.Create(survey);
 
