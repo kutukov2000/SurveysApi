@@ -18,7 +18,7 @@ namespace Core.Services
             _mapper = mapper;
         }
 
-        public async Task Create(CreateSurveyModel survey)
+        public async Task Create(SurveyModel survey)
         {
             _context.Surveys.Add(_mapper.Map<Survey>(survey));
 
@@ -34,7 +34,7 @@ namespace Core.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(SurveyDto survey)
+        public async Task Edit(SurveyModel survey)
         {
             _context.Surveys.Update(_mapper.Map<Survey>(survey));
 

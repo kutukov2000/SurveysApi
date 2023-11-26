@@ -1,6 +1,6 @@
 ﻿namespace Core.ApiModels
 {
-    public class CreateSurveyModel
+    public class SurveyModel
     {
         public required string Title { get; set; }
         public string? Description { get; set; }

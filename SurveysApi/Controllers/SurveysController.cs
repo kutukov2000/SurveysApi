@@ -34,7 +34,7 @@ namespace SurveysApi.Controllers
 
         // PUT: api/Surveys/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSurvey(SurveyDto survey)
+        public async Task<IActionResult> PutSurvey(SurveyModel survey)
         {
             await _service.Edit(survey);
 
@@ -43,7 +43,7 @@ namespace SurveysApi.Controllers
 
         // POST: api/Surveys
         [HttpPost]
-        public async Task<ActionResult<Survey>> PostSurvey(CreateSurveyModel survey)
+        public async Task<ActionResult<Survey>> PostSurvey(SurveyModel survey)
         {
             await _service.Create(survey);
 
