@@ -1,4 +1,5 @@
 ﻿using DataAccess.Data.Entities;
+using Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace DataAccess.Data
 {
@@ -6,7 +7,8 @@ namespace DataAccess.Data
     {
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Response> Responses { get; set; }
+        public DbSet<Answer> Responses { get; set; }
+        public DbSet<Variant> Variants { get; set; }
 
         public SurveysDbContext() { }
         public SurveysDbContext(DbContextOptions options) : base(options) { }
@@ -45,21 +47,43 @@ namespace DataAccess.Data
                 {
                     Id = 1,
                     SurveyId = 1,
-                    Prompt = "Question 1",
+                    Text = "Question 1"
                 },
                 new Question
                 {
                     Id = 2,
                     SurveyId = 1,
-                    Prompt = "Question 2",
+                    Text = "Question 2",
+                    Type = QuestionType.RadioButton
                 },
                 new Question
                 {
                     Id = 3,
                     SurveyId = 2,
-                    Prompt = "Question 3",
+                    Text = "Question 3",
+                    Type = QuestionType.CheckBox
                 }
             );
+            modelBuilder.Entity<Variant>().HasData(
+                    new Variant
+                    {
+                        Id = 1,
+                        QuestionId = 1,
+                        Text = "helllo"
+                    },
+                    new Variant
+                    {
+                        Id = 2,
+                        QuestionId = 1,
+                        Text = "helllo2"
+                    },
+                    new Variant
+                    {
+                        Id = 3,
+                        QuestionId = 1,
+                        Text = "3"
+                    }
+                );
         }
     }
 }

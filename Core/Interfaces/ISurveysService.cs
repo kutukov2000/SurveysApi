@@ -7,8 +7,8 @@ namespace Core.Interfaces
     {
         Task<List<Survey>>? Get();
         Task<Survey?> GetById(int id);
-        Task Create(SurveyDTO survey);
-        Task Edit(SurveyDTO survey);
+        Task Create(SurveyDto survey);
+        Task Edit(SurveyDto survey);
         Task Delete(int id);
     }
 }

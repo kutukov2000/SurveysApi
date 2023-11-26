@@ -18,7 +18,7 @@ namespace Core.Services
             _mapper = mapper;
         }
 
-        public async Task Create(SurveyDTO survey)
+        public async Task Create(SurveyDto survey)
         {
             _context.Surveys.Add(_mapper.Map<Survey>(survey));
 
@@ -34,7 +34,7 @@ namespace Core.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(SurveyDTO survey)
+        public async Task Edit(SurveyDto survey)
         {
             _context.Surveys.Update(_mapper.Map<Survey>(survey));
 
@@ -43,12 +43,31 @@ namespace Core.Services
 
         public async Task<List<Survey>>? Get()
         {
-            return await _context.Surveys.Include(s => s.Questions).ToListAsync();
+            //return await _context.Surveys
+            //                    .Include(s => s.Questions)
+            //                    .Select(s => new SurveyDto
+            //                    {
+            //                        Id = s.Id,
+            //                        Title = s.Title,
+            //                        Questions = s.Questions.Select(q => new QuestionDto
+            //                        {
+            //                            Id = q.Id,
+            //                            Text = q.Text,
+            //                            Type = q.Type,
+            //                            Variants = q.Variants
+            //                        }).ToList()
+            //                    })
+            //                    .ToListAsync();
+            List<Survey> surveys = await _context.Surveys.Include(s => s.Questions).ThenInclude(q => q.Variants).ToListAsync();
+
+            return surveys;
+            //return await _context.Surveys.Include(s => s.Questions).ThenInclude(q => (q as Question).Variants).ToListAsync();
         }
 
         public async Task<Survey?> GetById(int id)
         {
-            var survey = await _context.Surveys.FindAsync(id);
+            //var survey = await _context.Surveys.FindAsync(id);
+            var survey = _context.Surveys.Where(s => s.Id == id).Include(s => s.Questions).ThenInclude(q => q.Variants).FirstOrDefault();
 
             if (survey == null) throw new Exception();//TO DO
 

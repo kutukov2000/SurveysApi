@@ -4,6 +4,7 @@ using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(SurveysDbContext))]
-    partial class SurveysDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231126074309_AddQuestionsTypes")]
+    partial class AddQuestionsTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,48 +137,6 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Infrastructure.Data.Entities.Variant", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("Variants");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            QuestionId = 1,
-                            Text = "helllo"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            QuestionId = 1,
-                            Text = "helllo2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            QuestionId = 1,
-                            Text = "3"
-                        });
-                });
-
             modelBuilder.Entity("DataAccess.Data.Entities.Answer", b =>
                 {
                     b.HasOne("DataAccess.Data.Entities.Question", "Question")
@@ -202,22 +163,9 @@ namespace Infrastructure.Migrations
                     b.Navigation("Survey");
                 });
 
-            modelBuilder.Entity("Infrastructure.Data.Entities.Variant", b =>
-                {
-                    b.HasOne("DataAccess.Data.Entities.Question", "Question")
-                        .WithMany("Variants")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-                });
-
             modelBuilder.Entity("DataAccess.Data.Entities.Question", b =>
                 {
                     b.Navigation("Answers");
-
-                    b.Navigation("Variants");
                 });
 
             modelBuilder.Entity("DataAccess.Data.Entities.Survey", b =>

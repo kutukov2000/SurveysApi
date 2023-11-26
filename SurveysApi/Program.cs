@@ -2,6 +2,7 @@ using Core.Interfaces;
 using Core.Services;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,10 @@ string connectionString = builder.Configuration.GetConnectionString("LocalDb")!;
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
 
 builder.Services.AddDbContext<SurveysDbContext>(opts => opts.UseSqlServer(connectionString));
 
