@@ -19,6 +19,7 @@ builder.Services.AddDbContext<SurveysDbContext>(opts => opts.UseSqlServer(connec
 
 builder.Services.AddScoped<ISurveysService, SurveysService>();
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();
+builder.Services.AddScoped<IVariantsService, VariantsService>();
 
 // configure AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

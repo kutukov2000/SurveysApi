@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.ApiModels;
 using DataAccess.Data.Entities;
+using Infrastructure.Data.Entities;
 
 namespace Core.Helpers
 {
@@ -12,6 +13,8 @@ namespace Core.Helpers
 
             CreateMap<QuestionDto, Question>().ReverseMap();
             CreateMap<CreateQuestionModel, Question>().ReverseMap();
+
+            CreateMap<CreateVariantModel, Variant>().ReverseMap();
         }
     }
 }
