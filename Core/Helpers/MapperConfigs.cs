@@ -8,8 +8,10 @@ namespace Core.Helpers
     {
         public MapperConfigs()
         {
-            //Maps for Car model
             CreateMap<SurveyDto, Survey>().ReverseMap();
+
+            CreateMap<QuestionDto, Question>().ReverseMap();
+            CreateMap<CreateQuestionModel, Question>().ReverseMap();
         }
     }
 }

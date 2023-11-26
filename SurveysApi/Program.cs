@@ -18,6 +18,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddDbContext<SurveysDbContext>(opts => opts.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<ISurveysService, SurveysService>();
+builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 
 // configure AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -35,6 +36,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(options =>
+{
+    options.AllowAnyHeader();
+    options.AllowAnyMethod();
+    options.AllowAnyOrigin();
+});
 
 app.UseAuthorization();
 

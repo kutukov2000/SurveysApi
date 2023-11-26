@@ -2,12 +2,10 @@
 
 namespace Core.ApiModels
 {
-    public class QuestionDto
+    public class CreateQuestionModel
     {
-        public int Id { get; set; }
-        public string Text { get; set; }
+        public required string Text { get; set; }
         public QuestionType Type { get; set; }
-        public List<string> Variants { get; set; }
         public int SurveyId { get; set; }
     }
 }
