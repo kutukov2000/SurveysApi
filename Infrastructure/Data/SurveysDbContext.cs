@@ -16,7 +16,7 @@ namespace DataAccess.Data
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SurveysDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer("Server=tcp:kutukov-artur-azure-server.database.windows.net,1433;Initial Catalog=SurveysDb;Persist Security Info=False;User ID=kutukov2000;Password=#4\"^%9c=F=.au_2\r\n;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,8 @@ namespace DataAccess.Data
                 {
                     Id = 1,
                     SurveyId = 1,
-                    Text = "Question 1"
+                    Text = "Question 1",
+                    Type = QuestionType.CheckBox
                 },
                 new Question
                 {
@@ -62,6 +63,20 @@ namespace DataAccess.Data
                     SurveyId = 2,
                     Text = "Question 3",
                     Type = QuestionType.CheckBox
+                },
+                new Question
+                {
+                    Id = 4,
+                    SurveyId = 2,
+                    Text = "text question",
+                    Type = QuestionType.Text
+                },
+                new Question
+                {
+                    Id = 5,
+                    SurveyId = 2,
+                    Text = "date question",
+                    Type = QuestionType.Date
                 }
             );
             modelBuilder.Entity<Variant>().HasData(

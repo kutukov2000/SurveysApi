@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connectionString = builder.Configuration.GetConnectionString("LocalDb")!;
+string connectionString = builder.Configuration.GetConnectionString("AzureDb")!;
 
 // Add services to the container.
 
