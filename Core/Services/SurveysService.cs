@@ -34,12 +34,20 @@ namespace Core.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(SurveyModel survey)
+        public async Task Edit(int id, SurveyModel survey)
         {
-            _context.Surveys.Update(_mapper.Map<Survey>(survey));
+            var existingSurvey = await _context.Surveys.FindAsync(id);
+
+            if (existingSurvey == null)
+            {
+                throw new Exception();//TO DO
+            }
+
+            _mapper.Map(survey, existingSurvey);
 
             await _context.SaveChangesAsync();
         }
+
 
         public async Task<List<Survey>>? Get()
         {

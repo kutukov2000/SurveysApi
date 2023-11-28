@@ -34,12 +34,14 @@ namespace SurveysApi.Controllers
 
         // PUT: api/Surveys/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSurvey(SurveyModel survey)
+        public async Task<IActionResult> PutSurvey(int id, [FromBody] SurveyModel survey)
         {
-            await _service.Edit(survey);
+            // Опрацювання id
+            await _service.Edit(id, survey);
 
-            return NoContent();
+            return Ok();
         }
+
 
         // POST: api/Surveys
         [HttpPost]
