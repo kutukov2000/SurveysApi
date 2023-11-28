@@ -16,6 +16,8 @@ namespace Core.Helpers
             CreateMap<CreateQuestionModel, Question>().ReverseMap();
 
             CreateMap<CreateVariantModel, Variant>().ReverseMap();
+
+            CreateMap<CreateAnswerModel, Answer>().ReverseMap();
         }
     }
 }
