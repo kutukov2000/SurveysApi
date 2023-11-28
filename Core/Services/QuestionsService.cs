@@ -46,6 +46,13 @@ namespace Core.Services
             return await _context.Questions.Include(q => q.Variants).ToListAsync();
         }
 
+        public async Task<int> GetLastQuestionId()
+        {
+            var lastId = await _context.Questions.MaxAsync(q => q.Id);
+
+            return lastId;
+        }
+
         public async Task<Question?> GetById(int id)
         {
             var question = _context.Questions.Where(q => q.Id == id).Include(q => q.Variants).FirstOrDefault();

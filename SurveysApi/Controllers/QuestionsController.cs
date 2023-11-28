@@ -35,7 +35,7 @@ namespace SurveysApi.Controllers
         {
             await _service.Create(question);
 
-            return Ok(question);
+            return Ok(await _service.GetLastQuestionId());
         }
 
         // PUT api/<QuestionsController>/5
