@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+﻿using Core.ApiModels;
+using Core.Interfaces;
 using Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +43,7 @@ namespace SurveysApi.Controllers
 
         // POST: api/Surveys
         [HttpPost]
-        public async Task<ActionResult<Variant>> Post(Variant variant)
+        public async Task<ActionResult<Variant>> Post(CreateVariantModel variant)
         {
             await _service.Create(variant);
 

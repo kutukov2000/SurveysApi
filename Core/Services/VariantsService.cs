@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.ApiModels;
 using Core.Interfaces;
 using DataAccess.Data;
 using Infrastructure.Data.Entities;
@@ -17,9 +18,9 @@ namespace Core.Services
             _mapper = mapper;
         }
 
-        public async Task Create(Variant variant)
+        public async Task Create(CreateVariantModel variant)
         {
-            _context.Variants.Add(variant);
+            _context.Variants.Add(_mapper.Map<Variant>(variant));
 
             await _context.SaveChangesAsync();
         }

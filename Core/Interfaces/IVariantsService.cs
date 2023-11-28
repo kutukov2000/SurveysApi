@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data.Entities;
+﻿using Core.ApiModels;
+using Infrastructure.Data.Entities;
 
 namespace Core.Interfaces
 {
@@ -6,8 +7,8 @@ namespace Core.Interfaces
     {
         Task<List<Variant>>? Get();
         Task<Variant?> GetById(int id);
-        Task Create(Variant question);
-        Task Edit(Variant question);
+        Task Create(CreateVariantModel variant);
+        Task Edit(Variant variant);
         Task Delete(int id);
     }
 }
