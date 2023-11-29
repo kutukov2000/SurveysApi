@@ -1,6 +1,7 @@
 using Core.Interfaces;
 using Core.Services;
 using DataAccess.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -16,11 +17,15 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 builder.Services.AddDbContext<SurveysDbContext>(opts => opts.UseSqlServer(connectionString));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<SurveysDbContext>()
+                .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<ISurveysService, SurveysService>();
 builder.Services.AddScoped<IQuestionsService, QuestionsService>();
 builder.Services.AddScoped<IVariantsService, VariantsService>();
 builder.Services.AddScoped<IAnswersService, AnswersService>();
+builder.Services.AddScoped<IAccountsService, AccountsService>();
 
 // configure AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
