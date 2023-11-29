@@ -3,6 +3,7 @@ using Core.ApiModels;
 using Core.Interfaces;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Services
 {
@@ -40,14 +41,14 @@ namespace Core.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<CreateAnswerModel>>? Get()
+        public async Task<List<Answer>>? Get()
         {
-            List<CreateAnswerModel> answer = new List<CreateAnswerModel>();
-            foreach (var item in _context.Responses)
-            {
-                answer.Add(_mapper.Map<CreateAnswerModel>(item));
-            }
-            return answer;
+            //List<CreateAnswerModel> answer = new List<CreateAnswerModel>();
+            //foreach (var item in _context.Responses)
+            //{
+            //    answer.Add(_mapper.Map<CreateAnswerModel>(item));
+            //}
+            return await _context.Responses.ToListAsync();
         }
 
         public async Task<Answer?> GetById(int id)

@@ -17,7 +17,7 @@ namespace SurveysApi.Controllers
         }
         // GET: api/<QuestionsController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CreateAnswerModel>>> Get()
+        public async Task<ActionResult<IEnumerable<Answer>>> Get()
         {
             return await _service.Get();
         }

@@ -5,7 +5,7 @@ namespace Core.Interfaces
 {
     public interface IAnswersService
     {
-        Task<List<CreateAnswerModel>>? Get();
+        Task<List<Answer>>? Get();
         Task<Answer?> GetById(int id);
         Task Create(CreateAnswerModel answer);
         Task Edit(Answer answer);
