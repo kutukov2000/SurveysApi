@@ -1,9 +1,10 @@
 ﻿using DataAccess.Data.Entities;
 using Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace DataAccess.Data
 {
-    public class SurveysDbContext : DbContext
+    public class SurveysDbContext : IdentityDbContext
     {
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
