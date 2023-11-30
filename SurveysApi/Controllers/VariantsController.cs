@@ -32,6 +32,15 @@ namespace SurveysApi.Controllers
             return variant;
         }
 
+        // GET: api/Surveys/5
+        [HttpGet("byQuestionId")]
+        public async Task<ActionResult<IEnumerable<Variant>>> GetByQuestionId(int questionIdid)
+        {
+            List<Variant> variants = await _service.GetByQuestionId(questionIdid);
+
+            return variants;
+        }
+
         // PUT: api/Surveys/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Variant variant)

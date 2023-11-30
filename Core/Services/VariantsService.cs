@@ -55,6 +55,10 @@ namespace Core.Services
         {
             return await _context.Variants.ToListAsync();
         }
+        public async Task<List<Variant>>? GetByQuestionId(int questionId)
+        {
+            return await _context.Variants.Where(v => v.QuestionId == questionId).ToListAsync();
+        }
 
         public async Task<Variant?> GetById(int id)
         {
