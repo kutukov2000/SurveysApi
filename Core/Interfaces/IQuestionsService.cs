@@ -9,7 +9,7 @@ namespace Core.Interfaces
         Task<Question?> GetById(int id);
         Task<int> GetLastQuestionId();
         Task Create(CreateQuestionModel question);
-        Task Edit(Question question);
+        Task Edit(int id, EditQuestionModel question);
         Task Delete(int id);
     }
 }

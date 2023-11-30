@@ -34,9 +34,16 @@ namespace Core.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(Question question)
+        public async Task Edit(int id, EditQuestionModel question)
         {
-            _context.Questions.Update(question);
+            var existingQuestion = await _context.Questions.FindAsync(id);
+
+            if (existingQuestion == null)
+            {
+                throw new Exception();//TO DO
+            }
+
+            _mapper.Map(question, existingQuestion);
 
             await _context.SaveChangesAsync();
         }

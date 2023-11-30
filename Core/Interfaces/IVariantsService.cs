@@ -10,5 +10,6 @@ namespace Core.Interfaces
         Task Create(CreateVariantModel variant);
         Task Edit(Variant variant);
         Task Delete(int id);
+        Task DeleteByQuestionId(int questionId);
     }
 }

@@ -40,11 +40,11 @@ namespace SurveysApi.Controllers
 
         // PUT api/<QuestionsController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromBody] Question question)
+        public async Task<IActionResult> Put(int id, [FromBody] EditQuestionModel question)
         {
-            await _service.Edit(question);
+            await _service.Edit(id, question);
 
-            return NoContent();
+            return Ok();
         }
 
         // DELETE api/<QuestionsController>/5

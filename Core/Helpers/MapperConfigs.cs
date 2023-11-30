@@ -14,6 +14,7 @@ namespace Core.Helpers
 
             CreateMap<QuestionDto, Question>().ReverseMap();
             CreateMap<CreateQuestionModel, Question>().ReverseMap();
+            CreateMap<EditQuestionModel, Question>().ReverseMap();
 
             CreateMap<CreateVariantModel, Variant>().ReverseMap();
 

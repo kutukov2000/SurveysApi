@@ -34,6 +34,16 @@ namespace Core.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteByQuestionId(int questionId)
+        {
+            foreach (var variant in _context.Variants.Where(v => v.QuestionId == questionId))
+            {
+                _context.Remove(variant);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task Edit(Variant variant)
         {
             _context.Variants.Update(variant);
