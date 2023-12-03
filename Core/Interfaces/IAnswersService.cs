@@ -7,6 +7,7 @@ namespace Core.Interfaces
     {
         Task<List<Answer>>? Get();
         Task<Answer?> GetById(int id);
+        Task<List<Answer>>? GetByQuestionId(int questionId);
         Task Create(CreateAnswerModel answer);
         Task Edit(Answer answer);
         Task Delete(int id);

@@ -64,5 +64,10 @@ namespace Core.Services
 
             return answer;
         }
+
+        public async Task<List<Answer>>? GetByQuestionId(int questionId)
+        {
+            return await _context.Responses.Where(r => r.QuestionId == questionId).ToListAsync();
+        }
     }
 }

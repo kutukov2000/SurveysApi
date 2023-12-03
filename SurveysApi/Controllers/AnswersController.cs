@@ -29,6 +29,15 @@ namespace SurveysApi.Controllers
             return await _service.GetById(id);
         }
 
+        // GET: api/Surveys/5
+        [HttpGet("byQuestionId")]
+        public async Task<ActionResult<IEnumerable<Answer>>> GetByQuestionId(int questionIdid)
+        {
+            List<Answer> answers = await _service.GetByQuestionId(questionIdid);
+
+            return answers;
+        }
+
         // POST api/<QuestionsController>
         [HttpPost]
         public async Task<ActionResult<Answer>> Post([FromBody] CreateAnswerModel answer)
