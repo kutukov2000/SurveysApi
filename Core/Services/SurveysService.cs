@@ -51,14 +51,23 @@ namespace Core.Services
 
         public async Task<List<Survey>>? Get()
         {
-            List<Survey> surveys = await _context.Surveys.Include(s => s.Questions).ThenInclude(q => q.Variants).ToListAsync();
+            List<Survey> surveys = await _context.Surveys
+                .Include(s => s.Questions)
+                .ThenInclude(q => q.Variants)
+                .AsSplitQuery()
+                .ToListAsync();
 
             return surveys;
         }
 
         public async Task<Survey?> GetById(int id)
         {
-            var survey = _context.Surveys.Where(s => s.Id == id).Include(s => s.Questions).ThenInclude(q => q.Variants).FirstOrDefault();
+            var survey = _context.Surveys
+                .Where(s => s.Id == id)
+                .Include(s => s.Questions)
+                .ThenInclude(q => q.Variants)
+                .AsSplitQuery()
+                .FirstOrDefault();
 
             if (survey == null) throw new Exception();//TO DO
 
