@@ -10,5 +10,6 @@ namespace Core.Interfaces
         Task Create(CreateAnswerModel answer);
         Task Edit(Answer answer);
         Task Delete(int id);
+        Task DeleteByQuestionId(int questionId);
     }
 }

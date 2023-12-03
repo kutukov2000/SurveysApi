@@ -34,6 +34,16 @@ namespace Core.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteByQuestionId(int questionId)
+        {
+            foreach (var answer in _context.Responses.Where(r => r.QuestionId == questionId))
+            {
+                _context.Remove(answer);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task Edit(Answer answer)
         {
             _context.Responses.Update(answer);
@@ -43,11 +53,6 @@ namespace Core.Services
 
         public async Task<List<Answer>>? Get()
         {
-            //List<CreateAnswerModel> answer = new List<CreateAnswerModel>();
-            //foreach (var item in _context.Responses)
-            //{
-            //    answer.Add(_mapper.Map<CreateAnswerModel>(item));
-            //}
             return await _context.Responses.ToListAsync();
         }
 

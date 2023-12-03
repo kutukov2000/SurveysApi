@@ -55,5 +55,13 @@ namespace SurveysApi.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("byQuestionId")]
+        public async Task<IActionResult> DeleteByQuestionId(int questionId)
+        {
+            await _service.DeleteByQuestionId(questionId);
+
+            return Ok();
+        }
     }
 }
