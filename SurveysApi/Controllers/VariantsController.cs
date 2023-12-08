@@ -1,6 +1,7 @@
 ﻿using Core.ApiModels;
 using Core.Interfaces;
 using Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SurveysApi.Controllers
@@ -16,14 +17,12 @@ namespace SurveysApi.Controllers
             _service = service;
         }
 
-        // GET: api/Surveys
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Variant>>> Get()
         {
             return await _service.Get();
         }
 
-        // GET: api/Surveys/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Variant>> Get(int id)
         {
@@ -32,7 +31,6 @@ namespace SurveysApi.Controllers
             return variant;
         }
 
-        // GET: api/Surveys/5
         [HttpGet("byQuestionId")]
         public async Task<ActionResult<IEnumerable<Variant>>> GetByQuestionId(int questionIdid)
         {
@@ -41,7 +39,7 @@ namespace SurveysApi.Controllers
             return variants;
         }
 
-        // PUT: api/Surveys/5
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Variant variant)
         {
@@ -50,7 +48,7 @@ namespace SurveysApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Surveys
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Variant>> Post(CreateVariantModel variant)
         {
@@ -59,7 +57,7 @@ namespace SurveysApi.Controllers
             return Ok(variant);
         }
 
-        // DELETE: api/Surveys/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -68,6 +66,7 @@ namespace SurveysApi.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("byQuestionId")]
         public async Task<IActionResult> DeleteByQuestionId(int questionId)
         {

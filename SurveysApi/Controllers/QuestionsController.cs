@@ -1,6 +1,7 @@
 ﻿using Core.ApiModels;
 using Core.Interfaces;
 using DataAccess.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SurveysApi.Controllers
@@ -15,21 +16,20 @@ namespace SurveysApi.Controllers
         {
             _service = service;
         }
-        // GET: api/<QuestionsController>
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Question>>> Get()
         {
             return await _service.Get();
         }
 
-        // GET api/<QuestionsController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> Get(int id)
         {
             return await _service.GetById(id);
         }
 
-        // POST api/<QuestionsController>
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Question>> Post([FromBody] CreateQuestionModel question)
         {
@@ -38,7 +38,7 @@ namespace SurveysApi.Controllers
             return Ok(await _service.GetLastQuestionId());
         }
 
-        // PUT api/<QuestionsController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] EditQuestionModel question)
         {
@@ -47,7 +47,7 @@ namespace SurveysApi.Controllers
             return Ok();
         }
 
-        // DELETE api/<QuestionsController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

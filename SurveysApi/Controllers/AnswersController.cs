@@ -1,6 +1,7 @@
 ﻿using Core.ApiModels;
 using Core.Interfaces;
 using DataAccess.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SurveysApi.Controllers
@@ -15,21 +16,19 @@ namespace SurveysApi.Controllers
         {
             _service = service;
         }
-        // GET: api/<QuestionsController>
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Answer>>> Get()
         {
             return await _service.Get();
         }
 
-        // GET api/<QuestionsController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Answer>> Get(int id)
         {
             return await _service.GetById(id);
         }
 
-        // GET: api/Surveys/5
         [HttpGet("byQuestionId")]
         public async Task<ActionResult<IEnumerable<Answer>>> GetByQuestionId(int questionIdid)
         {
@@ -38,7 +37,7 @@ namespace SurveysApi.Controllers
             return answers;
         }
 
-        // POST api/<QuestionsController>
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Answer>> Post([FromBody] CreateAnswerModel answer)
         {
@@ -47,7 +46,7 @@ namespace SurveysApi.Controllers
             return Ok(answer);
         }
 
-        // PUT api/<QuestionsController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromBody] Answer answer)
         {
@@ -56,7 +55,7 @@ namespace SurveysApi.Controllers
             return NoContent();
         }
 
-        // DELETE api/<QuestionsController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -65,6 +64,7 @@ namespace SurveysApi.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("byQuestionId")]
         public async Task<IActionResult> DeleteByQuestionId(int questionId)
         {
